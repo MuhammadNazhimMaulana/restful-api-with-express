@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Skema User
+// Skema Post
 const postSchema = new mongoose.Schema({ 
     title: {
         type: String,
