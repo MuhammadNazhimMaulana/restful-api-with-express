@@ -25,6 +25,22 @@ class HomeController{
         }
     }
 
+    // One Data
+    show = async (req, res) => {
+        try {
+
+            // Getting one posts
+            const posts = await Post.findOne({ _id: req.params._id })
+
+            return ResponseBulider.success(res, posts);
+        } catch (error) {
+            // If Error
+            return res.status(500).send({
+                message: error.message || "Terjadi Error"
+            })
+        }
+    }
+
     // Store Data
     store = (req, res) => {
         // Konstanta errors

@@ -9,7 +9,12 @@ const postController = new PostController()
 // Index
 router.get('/', postController.index);
 
+// Show
+router.get('/:_id', postController.show);
+
 // Post
 router.post('/', postValidationRules(), validate, postController.store);
+
+// Update
 
 module.exports = router;
