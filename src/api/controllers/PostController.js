@@ -100,7 +100,18 @@ class HomeController{
                 // Redirect 
                 return ResponseBulider.success(res, post);
             });
-        }   
+        }
+    }
+
+    // Delete
+    delete = (req, res) => {
+
+        // Delete Process
+        Post.deleteOne({ _id: req.params._id}).then((result) => {
+            
+            // Redirect 
+            return ResponseBulider.success(res, result);
+        });        
     }
 
 }
