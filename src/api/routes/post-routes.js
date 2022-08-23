@@ -16,5 +16,6 @@ router.get('/:_id', postController.show);
 router.post('/', postValidationRules(), validate, postController.store);
 
 // Update
+router.put('/:_id', postValidationRules(), validate, postController.update)
 
 module.exports = router;

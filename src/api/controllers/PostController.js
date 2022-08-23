@@ -30,9 +30,9 @@ class HomeController{
         try {
 
             // Getting one posts
-            const posts = await Post.findOne({ _id: req.params._id })
+            const post = await Post.findOne({ _id: req.params._id })
 
-            return ResponseBulider.success(res, posts);
+            return ResponseBulider.success(res, post);
         } catch (error) {
             // If Error
             return res.status(500).send({
@@ -52,18 +52,57 @@ class HomeController{
             // Status
             res.status(422);
 
-            // Redirect 
+            // Return 
             return ResponseBulider.error(res, 422, errors.errors);   
         }else{
     
             // New Function for adding contact
             Post.insertMany(req.body, (error, result) => {
        
-                // Redirect 
+                // Return 
                 return ResponseBulider.success(res, result);
             });
         }       
     }
+
+    // Update 
+    update = (req, res) => {
+        // Konstanta errors
+        const errors = validationResult(req);
+    
+        // Kalau error
+        if(!errors.isEmpty())
+        {
+            // Status
+            res.status(422);
+
+            // Redirect 
+            return ResponseBulider.error(res, 422, errors.errors);   
+        }else{
+    
+            // New Function for adding contact
+            Post.updateOne(
+                {
+                    _id: req.params._id
+                },
+                {
+                    $set: {
+                        title: req.body.title,
+                        body: req.body.body,
+                        published: req.body.published
+                    }
+                }
+                ).then( async (result) => {
+                
+                // Getting one post 
+                const post = await Post.findOne({ _id: req.params._id });
+
+                // Redirect 
+                return ResponseBulider.success(res, post);
+            });
+        }   
+    }
+
 }
 
 module.exports = HomeController

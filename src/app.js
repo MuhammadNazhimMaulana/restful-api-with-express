@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const methodOverride = require('method-override')
 
 // Env
 require('dotenv').config();
@@ -8,6 +9,9 @@ require('dotenv').config();
 require('./config/db');
 
 const app = express();
+
+// Set up method override
+app.use(methodOverride('_method'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
