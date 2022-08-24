@@ -82,6 +82,30 @@ class MenuController{
             return ResponseBulider.error(res, 500, error.message); 
         }
     }
+
+    // Delete one Product
+    delete = async (req, res) => {
+        try {
+
+            // Finding one Menu
+            const menu = await Menu.findOne({ where: { id: req.params.id }});
+
+            // If id isn't found
+            if(menu == null){
+                return ResponseBulider.error(res, 404, 'Menu Not Found');   
+            }else{
+                // Delete one Menu
+               await Menu.destroy({ where: { id: menu.id }});
+            }
+
+
+            return ResponseBulider.success(res, 'Menu Deleted');
+        } catch (error) {
+            // If Error
+            return ResponseBulider.error(res, 500, error.message); 
+        }
+    }
+
 }
 
 module.exports = MenuController

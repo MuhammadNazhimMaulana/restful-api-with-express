@@ -17,4 +17,7 @@ router.post('/', menuController.store);
 // Update
 router.put('/:id', menuController.update);
 
+// Delete
+router.delete('/:id', menuController.delete);
+
 module.exports = router;
