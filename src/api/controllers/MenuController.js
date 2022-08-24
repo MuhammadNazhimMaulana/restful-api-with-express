@@ -12,10 +12,31 @@ class MenuController{
     index = async (req, res) => {
         try {
 
-            // Getting all posts
-            const posts = await Menu.findAll({})
+            // Getting all menus
+            const menus = await Menu.findAll({})
 
-            return ResponseBulider.success(res, posts);
+            return ResponseBulider.success(res, menus);
+        } catch (error) {
+            // If Error
+            return res.status(500).send({
+                message: error.message || "Terjadi Error"
+            })
+        }
+    }
+
+    // Get One Product
+    show = async (req, res) => {
+        try {
+
+            // Finding one Menu
+            const menu = await Menu.findOne({ where: { id: req.params.id }});
+
+            // If id isn't found
+            if(menu == null){
+                return ResponseBulider.error(res, 404, 'Menu Not Found');   
+            }
+
+            return ResponseBulider.success(res, menu);
         } catch (error) {
             // If Error
             return res.status(500).send({
