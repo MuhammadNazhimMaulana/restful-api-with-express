@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: true }))
 
 // Seperate Route
 const post_route = require('./api/routes/post-routes');
+const menu_route = require('./api/routes/menu-routes');
+app.use('/menu', menu_route);
 app.use('/', post_route);
 
 const PORT = process.env.PORT;
