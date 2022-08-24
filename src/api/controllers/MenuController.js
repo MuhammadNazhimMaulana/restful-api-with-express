@@ -39,9 +39,7 @@ class MenuController{
             return ResponseBulider.success(res, menu);
         } catch (error) {
             // If Error
-            return res.status(500).send({
-                message: error.message || "Terjadi Error"
-            })
+            return ResponseBulider.error(res, 500, error.message); 
         }
     }
 
@@ -62,6 +60,28 @@ class MenuController{
         })
     }
 
+    // Update One Product
+    update = async (req, res) => {
+        try {
+
+            // Finding one Menu
+            const menu = await Menu.findOne({ where: { id: req.params.id }});
+
+            // If id isn't found
+            if(menu == null){
+                return ResponseBulider.error(res, 404, 'Menu Not Found');   
+            }else{
+                // Update one Menu
+               await Menu.update(req.body, { where: { id: menu.id }});
+            }
+
+
+            return ResponseBulider.success(res, menu);
+        } catch (error) {
+            // If Error
+            return ResponseBulider.error(res, 500, error.message); 
+        }
+    }
 }
 
 module.exports = MenuController

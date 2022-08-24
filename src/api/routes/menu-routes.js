@@ -14,4 +14,7 @@ router.get('/:id', menuController.show);
 // Create
 router.post('/', menuController.store);
 
+// Update
+router.put('/:id', menuController.update);
+
 module.exports = router;
