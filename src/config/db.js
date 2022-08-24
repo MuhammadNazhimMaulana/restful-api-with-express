@@ -13,10 +13,10 @@ const mysql = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, proces
     dialect: process.env.DB_DIALECT,
 
     pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
+        max: parseInt(process.env.MAX_POOL),
+        min: parseInt(process.env.MIN_POOL),
+        acquire: parseInt(process.env.ACQUIRE_POOL),
+        idle: parseInt(process.env.IDLE_POOL)
     }
 });
 
