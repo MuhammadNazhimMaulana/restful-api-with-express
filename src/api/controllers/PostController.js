@@ -7,7 +7,7 @@ const ResponseBulider = require('../helpers/responseBulider');
 // Validation
 const { validationResult } = require('express-validator');
 
-class HomeController{
+class PostController{
 
     // All Data
     index = async (req, res) => {
@@ -116,4 +116,4 @@ class HomeController{
 
 }
 
-module.exports = HomeController
+module.exports = PostController

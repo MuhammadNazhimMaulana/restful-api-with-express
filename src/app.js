@@ -5,7 +5,7 @@ const methodOverride = require('method-override')
 // Env
 require('dotenv').config();
 
-// Connextion
+// Connection
 require('./config/db');
 
 const app = express();
