@@ -8,4 +8,7 @@ const menuController = new MenuController()
 // Index
 router.get('/', menuController.index);
 
+// Index
+router.post('/', menuController.store);
+
 module.exports = router;

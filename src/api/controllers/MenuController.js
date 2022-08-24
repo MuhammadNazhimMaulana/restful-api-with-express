@@ -24,6 +24,23 @@ class MenuController{
         }
     }
 
+    // Create Data
+    store = async (req, res) => {
+
+        let data = {
+            nama_menu: req.body.nama_menu,
+            jumlah_menu: req.body.jumlah_menu ? req.body.jumlah_menu : 0,
+            deskripsi_menu: req.body.deskripsi_menu ? req.body.deskripsi_menu : 'Tidak Ada Deskripsi',
+        }
+
+        // Process Create
+        await Menu.create(data).then((result) => {
+
+            // Return 
+            return ResponseBulider.success(res, result);            
+        })
+    }
+
 }
 
 module.exports = MenuController
