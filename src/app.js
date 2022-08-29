@@ -17,8 +17,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 // Seperate Route
+const user_route = require('./api/routes/user-routes');
 const post_route = require('./api/routes/post-routes');
 const menu_route = require('./api/routes/menu-routes');
+app.use('/user', user_route);
 app.use('/menu', menu_route);
 app.use('/', post_route);
 
