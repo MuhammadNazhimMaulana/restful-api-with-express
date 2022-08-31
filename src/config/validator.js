@@ -1,7 +1,31 @@
 const { body, validationResult, check } = require('express-validator');
 
-// Post Model
+// Models
 const Post = require('../api/models/Post');
+const User = require('../api/models/User');
+
+// Validation For Login
+const loginRules = () => {
+  return [
+    check('password', 'Password Tidak Valid').isString(),
+
+    // Custom Validation
+    body('email').custom(async (value, { req }) => {
+
+        // Cek Existance
+        const user = await User.findOne({ email: value });
+
+        // Checking old title
+        if(req.body.email != user.email)
+        {
+          throw new Error('User Tidak Ditemukan')
+        }
+
+        return true;
+
+    })
+  ]
+}
 
 // Validation For Post
 const postValidationRules = () => {
@@ -50,6 +74,7 @@ const validate = (req, res, next) => {
 
 // Exporting modules
 module.exports = {
+  loginRules,
   postValidationRules,
   validate,
 }

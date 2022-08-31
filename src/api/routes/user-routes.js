@@ -1,6 +1,6 @@
 // Contoh Routing
 const express = require('express');
-const { postValidationRules, validate } = require('../../config/validator')
+const { loginRules, validate } = require('../../config/validator')
 const router = express.Router();
 const UsertController = require('../controllers/UserController')
 
