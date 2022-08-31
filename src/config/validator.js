@@ -7,18 +7,35 @@ const User = require('../api/models/User');
 // Validation For Login
 const loginRules = () => {
   return [
-    check('password', 'Password Tidak Valid').isString(),
+    check('password', 'Password Tidak Valid').isString()
+  ]
+}
+
+// Validation For Post
+const userValidationRules = () => {
+  return [
+    check('email', 'Email Tidak Valid').isString(),
 
     // Custom Validation
-    body('email').custom(async (value, { req }) => {
+    body('username').custom(async (value, { req }) => {
 
-        // Cek Existance
-        const user = await User.findOne({ email: value });
+        // Cek Duplikatnya
+        const duplicate = await User.findOne({ username: value });
 
-        // Checking old title
-        if(req.body.email != user.email)
+        // Checking old username
+        if(req.body.oldUsername)
         {
-          throw new Error('User Tidak Ditemukan')
+            // If duplicate exist and username is changed
+            if(value != req.body.oldUsername && duplicate){
+                throw new Error('Username Sudah ada')
+            }
+
+        }else{
+
+            // If there is a duplicate
+            if(duplicate){
+                throw new Error('Username Sudah ada')
+            }            
         }
 
         return true;
@@ -75,6 +92,7 @@ const validate = (req, res, next) => {
 // Exporting modules
 module.exports = {
   loginRules,
+  userValidationRules,
   postValidationRules,
   validate,
 }
