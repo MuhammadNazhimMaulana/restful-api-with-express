@@ -1,13 +1,14 @@
 // Contoh Routing
 const express = require('express');
-const { loginRules, validate, userValidationRules } = require('../../config/validator')
+const { loginRules, validate, userValidationRules } = require('../middlewares/validator')
+const { authenticateJWT } = require('../middlewares/auth')
 const router = express.Router();
 const UsertController = require('../controllers/UserController')
 
 const usertController = new UsertController()
 
 // Index
-router.get('/', usertController.index);
+router.get('/', authenticateJWT, usertController.index);
 
 // Login
 router.post('/login', usertController.login);

@@ -1,8 +1,8 @@
 const { body, validationResult, check } = require('express-validator');
 
 // Models
-const Post = require('../api/models/Post');
-const User = require('../api/models/User');
+const Post = require('../models/Post');
+const User = require('../models/User');
 
 // Validation For Login
 const loginRules = () => {
@@ -94,5 +94,5 @@ module.exports = {
   loginRules,
   userValidationRules,
   postValidationRules,
-  validate,
+  validate
 }
