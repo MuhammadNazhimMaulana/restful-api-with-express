@@ -69,10 +69,13 @@ class UserController{
             // Getting all user
             const user = await User.findOne({ email: req.body.email });
 
+            // Checking Password
+            const validPassword = await bcrypt.compare(req.body.password, user.password);
+            
             // Checking old title
-            if(req.body.email != user.email || req.body.password != user.password)
+            if(req.body.email != user.email || !validPassword)
             {
-                throw new Error('User Tidak Ditemukan')
+                return ResponseBulider.error(res, 400, 'Username atau Password Salah');
             }
 
             // Preparing Token
