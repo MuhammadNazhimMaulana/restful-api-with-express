@@ -4,6 +4,9 @@ const User = require('../models/User');
 // JWT 
 const jwt = require("jsonwebtoken");
 
+// Bcrypt
+const bcrypt = require("bcrypt");
+
 // Helper
 const ResponseBulider = require('../helpers/responseBulider');
 
@@ -27,7 +30,7 @@ class UserController{
     }
 
     // Store Data
-    store = (req, res) => {
+    store = async (req, res) => {
         // Konstanta errors
         const errors = validationResult(req);
     
@@ -40,7 +43,13 @@ class UserController{
             // Return 
             return ResponseBulider.error(res, 422, errors.errors);   
         }else{
-    
+
+            // generate salt to hash password
+            const salt = await bcrypt.genSalt(10);
+
+            // now we set user password to hashed password
+            req.body.password = await bcrypt.hash(req.body.password, salt);
+
             // New Function for adding contact
             User.insertMany(req.body, (error, result) => {
        
