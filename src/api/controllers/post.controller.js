@@ -1,8 +1,8 @@
 // Model
-const Post = require('../models/Post');
+const Post = require('../models/post.model');
 
 // Helper
-const ResponseBulider = require('../helpers/responseBulider');
+const ResponseBulider = require('../helpers/responseBulider.helper');
 
 // Validation
 const { validationResult } = require('express-validator');

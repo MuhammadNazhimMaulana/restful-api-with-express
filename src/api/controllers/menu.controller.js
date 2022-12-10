@@ -4,7 +4,7 @@ const db = require('../../config/db');
 const Menu = db.menus;
 
 // Helper
-const ResponseBulider = require('../helpers/responseBulider');
+const ResponseBulider = require('../helpers/responseBulider.helper');
 
 class MenuController{
 

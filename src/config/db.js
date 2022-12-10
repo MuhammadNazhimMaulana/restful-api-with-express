@@ -34,7 +34,7 @@ db.Sequelize = Sequelize;
 db.mysql = mysql;
 
 // Calling Schemas
-db.menus = require('../api/models/Menu')(mysql, DataTypes);
+db.menus = require('../api/models/menu.model')(mysql, DataTypes);
 
 db.mysql.sync({ force: false })
 .then(() => {

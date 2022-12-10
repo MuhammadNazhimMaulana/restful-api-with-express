@@ -1,7 +1,7 @@
 // Contoh Routing
 const express = require('express');
 const router = express.Router();
-const MenuController = require('../controllers/MenuController')
+const MenuController = require('../controllers/menu.controller')
 
 const menuController = new MenuController()
 

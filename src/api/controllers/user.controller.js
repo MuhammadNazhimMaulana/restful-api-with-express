@@ -1,5 +1,5 @@
 // Model
-const User = require('../models/User');
+const User = require('../models/user.model');
 
 // JWT 
 const jwt = require("jsonwebtoken");
@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 // Helper
-const ResponseBulider = require('../helpers/responseBulider');
+const ResponseBulider = require('../helpers/responseBulider.helper');
 
 // Validation
 const { validationResult } = require('express-validator');

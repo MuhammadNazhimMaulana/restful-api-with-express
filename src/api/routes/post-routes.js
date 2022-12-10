@@ -3,7 +3,7 @@ const express = require('express');
 const { postValidationRules, validate } = require('../middlewares/validator')
 const { authenticateJWT } = require('../middlewares/auth')
 const router = express.Router();
-const PostController = require('../controllers/PostController')
+const PostController = require('../controllers/post.controller')
 
 const postController = new PostController()
 
